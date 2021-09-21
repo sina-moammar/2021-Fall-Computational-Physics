@@ -47,6 +47,7 @@ def DisplaySierpienski(n):
     ax = plt.axes()
     plt.ylim(0,100)
     plt.xlim(0,100)
+    plt.title(f"Sierpinski Fractal, level = %s"%n)
     for t in Triangels:
         ax.add_patch(t.Display())
 
@@ -81,3 +82,71 @@ class Sierspinski_random_fractal:
 
 s=Sierspinsk_random_fractal()
 s.Sierspinky()
+
+
+
+'''Functional program:'''
+#Sierpinski determinstic
+# A list trinagle -> each triangle -> 3triangle -> 3x triangle list -> ...
+'''
+        0 ->point1
+
+    0           0->midpoint1
+    ->midpoint0
+O ->Point0 0     0->point2
+'''
+def NewTrinagle(Pos = np.array([ np.array([0,0]) , np.array([50,50*3**0.5]) , np.array([100,0]) ]) ):
+
+    newTrinagle = []
+
+    line21 = (Pos[2][:] - Pos[1][:])/2
+    line10 = (Pos[1][:] - Pos[0][:])/2
+    line20 = (Pos[2][:] - Pos[0][:])/2
+
+    newTrinagle.append(np.array([Pos[0][:]+line20 , Pos[1][:]+line21 ,Pos[2][:] ]))
+    newTrinagle.append(np.array([Pos[0][:] , Pos[0][:]+line10 ,Pos[0][:]+line20 ]))
+    newTrinagle.append(np.array([Pos[0][:]+line10 , Pos[1][:] ,Pos[1][:]+line21 ]))
+
+    return newTrinagle
+
+def display(Pos):
+    return Polygon(Pos)
+def Display(n):
+    oldtr = NewTrinagle()
+    for i in range(n-1):
+        newtr =[]
+        for tr in oldtr:
+            newtr = newtr + NewTrinagle(tr)
+        oldtr = newtr
+        
+    plt.rcParams["figure.figsize"] = (10,10)
+    plt.ylim(0,100)
+    plt.xlim(0,100)
+    plt.title(f"level = %s"%n)
+    ax = plt.axes()
+    for tr in oldtr:
+        ax.add_patch(Polygon(tr))
+
+        
+        
+#Sierpinski random fractal
+
+
+def Initiallisation():
+    #pick random  numbers
+    #making the triangle
+    pass
+
+def Function_MidPoint():
+        #This function should Find the midPoint between an arbitarary point and a random vortix
+        #As explained, (N_iteration)
+        #in order to obtain Sierpinsly Fractal one would apply this function several times, 
+        #the more the better!
+
+    pass
+
+def Display_Sierpinski():
+    #iteration over level#
+    #Display the fractal of desired level.
+    #Do not forget to have a title for your figure!
+    pass
