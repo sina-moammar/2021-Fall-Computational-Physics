@@ -109,8 +109,6 @@ def NewTrinagle(Pos = np.array([ np.array([0,0]) , np.array([50,50*3**0.5]) , np
 
     return newTrinagle
 
-def display(Pos):
-    return Polygon(Pos)
 def Display(n):
     oldtr = NewTrinagle()
     for i in range(n-1):
